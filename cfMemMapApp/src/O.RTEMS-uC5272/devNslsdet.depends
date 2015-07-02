@@ -1,0 +1,9 @@
+# DO NOT EDIT: This file created by mkmf.pl,v 1.5 2002/03/25 21:33:24 jba Exp $ 
+
+devNslsdet.o : ../mcf5272.h ../../../include/nslsdetRecord.h \
+  ../devNslsdet.h
+
+#Depend files must be targets to avoid 'No rule to make target ...' errors
+../mcf5272.h :
+../../../include/nslsdetRecord.h :
+../devNslsdet.h :

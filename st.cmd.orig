@@ -1,0 +1,32 @@
+## Example RTEMS startup script
+
+## You may have to change cfMemMap to something else
+## everywhere it appears in this file
+
+#< envPaths
+
+## Register all support components
+dbLoadDatabase("dbd/cfMemMap.dbd")
+dbLoadDatabase("dbd/nslsdetRecord.dbd")
+
+cfMemMap_registerRecordDeviceDriver(pdbbase) 
+
+#initialize cfMemMap
+#devcfMemMapConfig(0,0x10000096,1)
+devcfSPIConfig(0,1,8)
+devcfSPIConfig(1,1,8)
+devcfSPIConfig(6,1,8)
+devNslsDetConfig(1,1,384)
+
+## Load record instances
+dbLoadRecords("db/cfSpiDacs.db","user=peter")
+dbLoadRecords("db/cfSpiDacs2.db","user=peter")
+dbLoadRecords("db/cfSpiAdcs.db","user=peter")
+dbLoadRecords("db/det1.db")
+
+## Set this to see messages from mySub
+#var mySubDebug 1
+#var cfMemMapDebug 12
+#var devnslsdetdebug 0
+
+iocInit()

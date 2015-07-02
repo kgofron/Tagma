@@ -1,0 +1,4 @@
+epicsEnvSet(ARCH,"RTEMS-uC5272")
+epicsEnvSet(IOC,"ioccfMemMap")
+epicsEnvSet(TOP,"/home/peter/IOCs/det_64")
+epicsEnvSet(EPICS_BASE,"/usr/local/epics/base")
