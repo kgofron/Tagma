@@ -1,0 +1,333 @@
+menu(nslsdetCNT) {
+	choice(nslsdetCNT_Done,"Done")
+	choice(nslsdetCNT_Count,"Count")
+}
+menu(nslsdetCONT) {
+	choice(nslsdetCONT_OneShot,"OneShot")
+	choice(nslsdetCONT_AutoCount,"AutoCount")
+}
+menu(nslsdetGate) {
+	choice(nslsdetGate_N,"N")
+	choice(nslsdetGate_Y,"Y")
+}
+menu(Gain) {
+	choice(gain_H,"H")
+	choice(gain_L,"L")
+}
+menu(shapeT) {
+	choice(shapeT_1,"4.0us")
+	choice(shapeT_2,"2.0us")
+	choice(shapeT_3,"1.0us")
+	choice(shapeT_4,"0.5us")
+}
+recordtype(nslsdet) {
+	include "dbCommon.dbd" 
+	field(VERS,DBF_FLOAT) {
+		prompt("Code Version")
+		special(SPC_NOMOD)
+	}
+	field(VAL,DBF_NOACCESS) {
+		prompt("Value")
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *           val")
+	}        
+        field(BPTR,DBF_NOACCESS) {
+                prompt("Buffer Pointer")
+                special(SPC_NOMOD)
+                interest(4)
+                extra("void *           bptr")
+        }
+	field(NVAL,DBF_ULONG) {
+		prompt("Number of values")
+		promptgroup(GUI_COMMON)
+                special(SPC_NOMOD)
+                interest(1)
+                initial("3")
+        }
+	
+	field(NELM,DBF_ULONG) {
+                prompt("Number of Elements")
+                promptgroup(GUI_COMMON)
+                special(SPC_MOD)
+                interest(1)
+                initial("64")
+        }
+
+	field(NORD,DBF_ULONG) {
+                prompt("Number elements read")
+                special(SPC_NOMOD)
+        }
+
+	
+	field(FREQ,DBF_DOUBLE) {
+		prompt("Time base freq")
+		promptgroup(GUI_COMMON)
+		interest(1)
+	}
+	field(CNT,DBF_MENU) {
+		prompt("Count")
+		special(SPC_MOD)
+		pp(TRUE)
+		interest(1)
+		menu(nslsdetCNT)
+	}
+	field(PCNT,DBF_MENU) {
+		prompt("Prev Count")
+		special(SPC_NOMOD)
+		interest(1)
+		menu(nslsdetCNT)
+	}
+	field(SS,DBF_SHORT) {
+		prompt("nslsdet state")
+		special(SPC_NOMOD)
+		interest(4)
+	}
+	field(US,DBF_SHORT) {
+		prompt("User state")
+		special(SPC_NOMOD)
+		interest(4)
+	}
+	field(CONT,DBF_MENU) {
+		prompt("OneShot/AutoCount")
+		special(SPC_MOD)
+		pp(TRUE)
+		interest(1)
+		menu(nslsdetCONT)
+	}
+	field(INP,DBF_INLINK) {
+		prompt("Input Specification")
+		promptgroup(GUI_COMMON)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(CARD,DBF_SHORT) {
+		prompt("Card Number")
+		special(SPC_NOMOD)
+		interest(3)
+	}
+	field(DLY,DBF_FLOAT) {
+		prompt("Delay")
+		promptgroup(GUI_COMMON)
+	}
+	field(DLY1,DBF_FLOAT) {
+		prompt("Auto-mode Delay")
+		promptgroup(GUI_COMMON)
+	}
+	field(NCH,DBF_SHORT) {
+		prompt("Number of Channels")
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(G1,DBF_MENU) {
+		prompt("Gate Control")
+		promptgroup(GUI_COMMON)
+		special(SPC_MOD)
+		interest(1)
+		menu(nslsdetGate)
+		initial("1")
+	}
+	field(TP,DBF_DOUBLE) {
+		prompt("Time Preset")
+		promptgroup(GUI_COMMON)
+		special(SPC_MOD)
+		interest(1)
+	}
+	field(TP1,DBF_DOUBLE) {
+		prompt("Auto Time Preset")
+		promptgroup(GUI_COMMON)
+		special(SPC_MOD)
+		interest(1)
+		initial("1")
+	}
+        field(PR1,DBF_LONG) {
+                prompt("Preset 1")
+                promptgroup(GUI_COMMON)
+                special(SPC_MOD)
+                interest(1)
+        }
+	field(T,DBF_DOUBLE) {
+		prompt("Timer")
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(SHPT,DBF_MENU) {
+		prompt("Shaping time")
+		promptgroup(GUI_COMMON)
+		special(SPC_MOD)
+		interest(1)
+		initial("1")
+		menu(shapeT)
+	}	
+	field(GAIN,DBF_MENU) {
+		prompt("Gain")
+		promptgroup(GUI_COMMON)
+		special(SPC_MOD)
+		interest(1)
+		initial("1")
+		menu(Gain)
+	}
+	field(AOEN, DBF_SHORT) {
+		prompt("Analog out chan")
+		pp(TRUE)
+		special(SPC_MOD)
+		interest(1)
+	}
+	field(LOEN, DBF_SHORT) {
+		prompt("Leakage out chan")
+		pp(TRUE)
+		special(SPC_MOD)
+		interest(1)
+	}
+	field(EBLK, DBF_SHORT) {
+		prompt("Enable input bias current")
+		pp(TRUE)
+		special(SPC_MOD)
+		interest(1)
+		menu(nslsdetGate)
+	}
+	field(CHEN,DBF_NOACCESS) {
+		prompt("Value")
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *           chen")
+	}        
+        field(PCHEN,DBF_NOACCESS) {
+                prompt("Buffer Pointer")
+                special(SPC_NOMOD)
+                interest(4)
+                extra("void *           pchen")
+        }
+	field(TSEN,DBF_NOACCESS) {
+		prompt("Value")
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *           tsen")
+	}        
+        field(PTSEN,DBF_NOACCESS) {
+                prompt("Buffer Pointer")
+                special(SPC_NOMOD)
+                interest(4)
+                extra("void *           ptsen")
+        }
+	field(TR1,DBF_NOACCESS) {
+		prompt("Value")
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *           tr1")
+	}        
+        field(PTR1,DBF_NOACCESS) {
+                prompt("Buffer Pointer")
+                special(SPC_NOMOD)
+                interest(4)
+                extra("void *           ptr1")
+        }
+	field(TR2,DBF_NOACCESS) {
+		prompt("Value")
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *           tr2")
+	}        
+        field(PTR2,DBF_NOACCESS) {
+                prompt("Buffer Pointer")
+                special(SPC_NOMOD)
+                interest(4)
+                extra("void *           ptr2")
+        }
+	field(TR3,DBF_NOACCESS) {
+		prompt("Value")
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *           tr3")
+	}        
+        field(PTR3,DBF_NOACCESS) {
+                prompt("Buffer Pointer")
+                special(SPC_NOMOD)
+                interest(4)
+                extra("void *           ptr3")
+        }
+	field(TR4,DBF_NOACCESS) {
+		prompt("Value")
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *           tr4")
+	}        
+        field(PTR4,DBF_NOACCESS) {
+                prompt("Buffer Pointer")
+                special(SPC_NOMOD)
+                interest(4)
+                extra("void *           ptr4")
+        }
+
+	field(S1,DBF_NOACCESS) {
+		prompt("Value")
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *           s1")
+	}        
+        field(PS1,DBF_NOACCESS) {
+                prompt("Buffer Pointer")
+                special(SPC_NOMOD)
+                interest(4)
+                extra("void *           ps1")
+        }
+	field(S2,DBF_NOACCESS) {
+		prompt("Value")
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *           s2")
+	}        
+        field(PS2,DBF_NOACCESS) {
+                prompt("Buffer Pointer")
+                special(SPC_NOMOD)
+                interest(4)
+                extra("void *           ps2")
+        }
+	field(S3,DBF_NOACCESS) {
+		prompt("Value")
+		special(SPC_DBADDR)
+		pp(TRUE)
+		extra("void *           s3")
+	}        
+        field(PS3,DBF_NOACCESS) {
+                prompt("Buffer Pointer")
+                special(SPC_NOMOD)
+                interest(4)
+                extra("void *           ps3")
+        }
+	field(NM1,DBF_STRING) {
+		prompt("Scaler A name")
+		promptgroup(GUI_COMMON)
+		interest(1)
+		size(16)
+	}
+	field(NM2,DBF_STRING) {
+		prompt("Scaler B name")
+		promptgroup(GUI_COMMON)
+		interest(1)
+		size(16)
+	}
+	field(NM3,DBF_STRING) {
+		prompt("Scaler C name")
+		promptgroup(GUI_COMMON)
+		interest(1)
+		size(16)
+	}
+	field(EGU,DBF_STRING) {
+		prompt("Units Name")
+		promptgroup(GUI_COMMON)
+		interest(1)
+		size(16)
+	}
+	field(PREC,DBF_SHORT) {
+		prompt("Display Precision")
+		promptgroup(GUI_COMMON)
+		interest(1)
+	}
+	field(COUT,DBF_OUTLINK) {
+		prompt("CNT Output")
+		promptgroup(GUI_COMMON)
+		special(SPC_MOD)
+		interest(1)
+	}
+}

@@ -1,0 +1,14 @@
+include "nslsdetRecord.dbd"
+include "menuConvert.dbd"
+include "bptTherm10kdegC.dbd"
+registrar(registercfSPIConfig)
+variable("devcfSPIDebug", int)
+registrar(registerNslsDetConfig)
+variable("devnslsdetdebug",int)
+variable("nslsdetRecordDebug",int)
+variable("nslsdet_wait_time",int)
+registrar(registerpstate)
+registrar(registerrecpstate)
+device(ai,VME_IO,devAicfSPI,"Coldfire SPI in")
+device(ao,VME_IO,devAocfSPI,"Coldfire SPI out")
+device(nslsdet,VME_IO,devNslsDet,"NSLS detector")

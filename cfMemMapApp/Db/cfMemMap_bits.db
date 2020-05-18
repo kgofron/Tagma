@@ -1,0 +1,48 @@
+
+record(bo, "$(user):bo0") {
+  field(DESC, "coldfire output bit 0")
+  field(DTYP, "Coldfire bit out")
+  field(OUT,"#C0 S0 @0") 
+}
+
+record(bo, "$(user):bo1") {
+  field(DESC, "coldfire output bit 1")
+  field(DTYP, "Coldfire bit out")
+  field(OUT,"#C0 S0 @1")
+}
+
+record(bo, "$(user):bo2") {
+  field(DESC, "coldfire ouptut bit 2")
+  field(DTYP, "Coldfire bit out")
+  field(OUT,"#C0 S0 @2")
+}
+
+record(bo, "$(user):bo3") {
+  field(DESC, "coldfire output bit 3")
+  field(DTYP, "Coldfire bit out")
+  field(OUT,"#C0 S0 @3")
+}
+
+record(bi, "$(user):bi0") {
+  field(DESC, "coldfire input bit 0")
+  field(DTYP, "Coldfire bit in")
+  field(INP,"#C0 S0 @8")
+}
+
+record(bi, "$(user):bi1") {
+  field(DESC, "coldfire input bit 1")
+  field(DTYP, "Coldfire bit in")
+  field(INP,"#C0 S0 @9")
+}
+
+record(bi, "$(user):bi2") {
+  field(DESC, "coldfire input bit 2")
+  field(DTYP, "Coldfire bit in")
+  field(INP,"#C0 S0 @10")
+}
+
+record(bi, "$(user):bi3") {
+  field(DESC, "coldfire input bit 3")
+  field(DTYP, "Coldfire bit in")
+  field(INP,"#C0 S0 @11")
+}

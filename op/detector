@@ -1,0 +1,1 @@
+medm -x -macro "B=det,D=1" detector.adl &
